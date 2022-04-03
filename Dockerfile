@@ -21,16 +21,20 @@ RUN apk add --no-cache \
       yarn
 
 
-# RUN apk add udev ttf-freefont chromium
-RUN apk add firefox
+RUN apk add udev ttf-freefont chromium
+# RUN apk add firefox
 
 # RUN apk add --update util-linux
 
 
 ENV NODE_ENV production
-ENV PUPPETEER_PRODUCT firefox
+
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-ENV CHROMIUM_PATH /usr/bin/firefox
+ENV CHROMIUM_PATH /usr/bin/chromium-browser
+
+# ENV PUPPETEER_PRODUCT firefox
+# ENV CHROMIUM_PATH /usr/bin/firefox
+
 
 WORKDIR /usr/src/app
 

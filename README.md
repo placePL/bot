@@ -2,12 +2,8 @@
 
 ## Usage
 
-1. Install Docker (https://docker.com) and nodejs (https://nodejs.org)
+1. Install Docker (https://docker.com)
 2. Clone the repo with `git clone https://github.com/placePL/bot`
 3. Ask which accounts you should use on the discord server
-4. Install yarn (`npm i -g yarn`) and restore all dependencies by typing `yarn`
-5. Generate the docker-compose.yaml file by typing `yarn genCompose <start>,<end>`
-    * example: `yarn genCompose 10,20` to choose accounts 10-20
-    * example: `yarn genCompose -5` to choose last 5 accounts
-6. Build the docker image - `docker build -t rplacebot .`
+4. Edit `docker-compose.yaml` and change the ACCOUNTS_RANGE env variable - for example `70,100` means accounts 70-100 from the accounts.txt file
 7. Start the bots with `docker-compose up -d --build`
