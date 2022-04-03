@@ -32,7 +32,5 @@ async function main() {
     // await sync.connect(SERVER_URL!);
 }
 
-console.log(process.env.REDDIT_USERNAME)
-
 
 main().catch(console.error);
