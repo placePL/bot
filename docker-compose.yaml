@@ -6,7 +6,7 @@ services:
     bot0:
         image: rplacebot
         build:
-        context: .
+            context: .
         environment:
             - REDDIT_USERNAME=2137_2137_
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
