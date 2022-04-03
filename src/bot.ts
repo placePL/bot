@@ -30,17 +30,6 @@ class BotInstance {
         this.context = await this.browser.createIncognitoBrowserContext();
         this.page = await this.context.newPage();
         await this.page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36');
-        this.page.on('requestfailed', request => {
-            if(request.failure()?.errorText == 'net::ERR_ABORTED') return;
-
-            this.log(`${request.failure()?.errorText} ${request.url()}`);
-            if (request.url() == 'https://gql-realtime-2.reddit.com/query') {
-                this.error('something went wrong while setting pixel!', request.failure()?.errorText);
-                this.ratelimitEnd = Date.now() + (5 * 60 * 1000) + 500;
-                this.socket?.emit('ratelimitUpdate', this.ratelimitEnd);
-                this.socket?.emit('ready');
-            }
-        });
 
         let ok = false;
         while (!ok) {
