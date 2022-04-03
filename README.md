@@ -9,4 +9,5 @@
 5. Generate the docker-compose.yaml file by typing `yarn genCompose <start>,<end>`
     * example: `yarn genCompose 10,20` to choose accounts 10-20
     * example: `yarn genCompose -5` to choose last 5 accounts
-6. Start the bots with `docker-compose up -d --build`
+6. Build the docker image - `docker build -t rplacebot .`
+7. Start the bots with `docker-compose up -d --build`
