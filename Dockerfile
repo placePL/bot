@@ -1,4 +1,4 @@
-FROM node:16-ubuntu AS builder
+FROM node:16 AS builder
 WORKDIR /usr/src/app
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
@@ -10,7 +10,7 @@ COPY tsconfig*.json ./
 COPY src src
 RUN npm run build
 
-FROM node:16-ubuntu
+FROM node:16
 
 RUN apt update && apt install -y \ 
   chromium-browser \ 
