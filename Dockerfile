@@ -39,7 +39,7 @@ ENV CHROMIUM_PATH /usr/bin/chromium-browser
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-RUN PUPPETEER_PRODUCT=firefox npm install
+RUN npm install
 COPY --from=builder /usr/src/app/dist/ dist/
 
 # CMD echo $(whereis firefox)
