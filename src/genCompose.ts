@@ -20,15 +20,17 @@ const template = (n: number, username: string, password: string) => `
             - CHROMIUM_HEADLESS=true
 `
 
-async function main() {
+async function main(range: string) {
     const f = fs.readFileSync(path.resolve('accounts.txt'));
     const str = f.toString();
     const res = [...str.matchAll(/^\d+:\r?\n?([a-zA-Z0-9-_]+)$/gm)];
 
     const usernames = res.map(x => x[1]);
     
+    const [start, end] = range.split('-').map(x => parseInt(x));
+
     console.log(file);
-    console.log(usernames.slice(-20).map((x, i) => template(i, x, pass)).join('\n'));
+    console.log(usernames.slice(start, end).map((x, i) => template(i, x, pass)).join('\n'));
 }
 
-main();
+main(process.argv[2]);
