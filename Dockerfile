@@ -22,7 +22,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-RUN npm install
+RUN PUPPETEER_PRODUCT=firefox npm install
 COPY --from=builder /usr/src/app/dist/ dist/
 
 ENTRYPOINT [ "node", "dist/main.js" ]
