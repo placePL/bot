@@ -1,5 +1,9 @@
 FROM node:16-alpine AS builder
 WORKDIR /usr/src/app
+
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+ENV CHROMIUM_PATH /usr/bin/chromium-browser
+
 COPY package*.json ./
 RUN npm ci
 COPY tsconfig*.json ./
