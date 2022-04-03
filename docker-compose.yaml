@@ -1,5 +1,114 @@
+
 version: '3.4'
 services:
-  bot1:
-    build:
-      context: .
+
+
+    bot0:
+        image: rplacebot
+        build:
+            context: .
+        environment:
+            - REDDIT_USERNAME=racajacaplaca
+            - REDDIT_PASSWORD=KPjS-W46NgrQiyb
+            - SERVER_URL=https://rplace.cubepotato.eu
+            - CHROMIUM_HEADLESS=true
+
+
+    bot1:
+        image: rplacebot
+        build:
+            context: .
+        environment:
+            - REDDIT_USERNAME=haha-bo-wiecie-zegz
+            - REDDIT_PASSWORD=KPjS-W46NgrQiyb
+            - SERVER_URL=https://rplace.cubepotato.eu
+            - CHROMIUM_HEADLESS=true
+
+
+    bot2:
+        image: rplacebot
+        build:
+            context: .
+        environment:
+            - REDDIT_USERNAME=chlopakiczekajta
+            - REDDIT_PASSWORD=KPjS-W46NgrQiyb
+            - SERVER_URL=https://rplace.cubepotato.eu
+            - CHROMIUM_HEADLESS=true
+
+
+    bot3:
+        image: rplacebot
+        build:
+            context: .
+        environment:
+            - REDDIT_USERNAME=ICantCumAnyMore__
+            - REDDIT_PASSWORD=KPjS-W46NgrQiyb
+            - SERVER_URL=https://rplace.cubepotato.eu
+            - CHROMIUM_HEADLESS=true
+
+
+    bot4:
+        image: rplacebot
+        build:
+            context: .
+        environment:
+            - REDDIT_USERNAME=Narysowano-Piksel-1
+            - REDDIT_PASSWORD=KPjS-W46NgrQiyb
+            - SERVER_URL=https://rplace.cubepotato.eu
+            - CHROMIUM_HEADLESS=true
+
+
+    bot5:
+        image: rplacebot
+        build:
+            context: .
+        environment:
+            - REDDIT_USERNAME=Narysowano-Piksel-2
+            - REDDIT_PASSWORD=KPjS-W46NgrQiyb
+            - SERVER_URL=https://rplace.cubepotato.eu
+            - CHROMIUM_HEADLESS=true
+
+
+    bot6:
+        image: rplacebot
+        build:
+            context: .
+        environment:
+            - REDDIT_USERNAME=Narysowano-Piksel-3
+            - REDDIT_PASSWORD=KPjS-W46NgrQiyb
+            - SERVER_URL=https://rplace.cubepotato.eu
+            - CHROMIUM_HEADLESS=true
+
+
+    bot7:
+        image: rplacebot
+        build:
+            context: .
+        environment:
+            - REDDIT_USERNAME=Narysowano-Piksel-4
+            - REDDIT_PASSWORD=KPjS-W46NgrQiyb
+            - SERVER_URL=https://rplace.cubepotato.eu
+            - CHROMIUM_HEADLESS=true
+
+
+    bot8:
+        image: rplacebot
+        build:
+            context: .
+        environment:
+            - REDDIT_USERNAME=Narysowano-Piksel-5
+            - REDDIT_PASSWORD=KPjS-W46NgrQiyb
+            - SERVER_URL=https://rplace.cubepotato.eu
+            - CHROMIUM_HEADLESS=true
+
+
+    bot9:
+        image: rplacebot
+        build:
+            context: .
+        environment:
+            - REDDIT_USERNAME=kurla-zrub-mi-louda
+            - REDDIT_PASSWORD=KPjS-W46NgrQiyb
+            - SERVER_URL=https://rplace.cubepotato.eu
+            - CHROMIUM_HEADLESS=true
+

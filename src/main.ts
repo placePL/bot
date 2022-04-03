@@ -10,11 +10,13 @@ async function main() {
         REDDIT_USERNAME!,
         REDDIT_PASSWORD!,
         CHROMIUM_HEADLESS !== undefined,
-        CHROMIUM_PATH!
+        CHROMIUM_PATH
     );
     console.log('bot ready');
     await sync.connect(SERVER_URL!);
 }
+
+console.log(process.env.REDDIT_USERNAME)
 
 
 main().catch(console.error);
