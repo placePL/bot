@@ -14,13 +14,13 @@ FROM node:16-alpine
 # RUN apk add udev ttf-freefont chromium
 RUN apk add firefox
 
-RUN apk add --update util-linux
+# RUN apk add --update util-linux
 
 
 ENV NODE_ENV production
 ENV PUPPETEER_PRODUCT firefox
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-ENV CHROMIUM_PATH /usr/bin/chromium-browser
+ENV CHROMIUM_PATH /usr/bin/firefox
 
 WORKDIR /usr/src/app
 
@@ -28,5 +28,5 @@ COPY package*.json ./
 RUN PUPPETEER_PRODUCT=firefox npm install
 COPY --from=builder /usr/src/app/dist/ dist/
 
-CMD echo $(whereis firefox)
-# ENTRYPOINT [ "node", "dist/main.js" ]
+# CMD echo $(whereis firefox)
+ENTRYPOINT [ "node", "dist/main.js" ]
