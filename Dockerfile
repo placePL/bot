@@ -18,7 +18,7 @@ RUN apt-get install -y chromium
 
 ENV NODE_ENV production
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-ENV CHROMIUM_PATH /usr/bin/chromium-browser
+ENV CHROMIUM_PATH /usr/bin/chromium
 
 WORKDIR /usr/src/app
 
@@ -26,6 +26,4 @@ COPY package*.json ./
 RUN npm install
 COPY --from=builder /usr/src/app/dist/ dist/
 
-# ENTRYPOINT [ "/usr/bin/chromium-browser" , "--version" ]
-CMD echo hi && echo $(which chromium)
-# ENTRYPOINT [ "node", "dist/main.js" ]
+ENTRYPOINT [ "node", "dist/main.js" ]
