@@ -1,4 +1,4 @@
-FROM node:16-alpine AS builder
+FROM node:16-ubuntu AS builder
 WORKDIR /usr/src/app
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
@@ -10,18 +10,11 @@ COPY tsconfig*.json ./
 COPY src src
 RUN npm run build
 
-FROM node:16-alpine
+FROM node:16-ubuntu
 
-RUN apk add --no-cache \
-    udev \
-    chromium \
-    nss \
-    freetype \
-    harfbuzz \
-    ca-certificates \
-    ttf-freefont \
-    nodejs \
-    yarn
+RUN apt update && apt install -y \ 
+  chromium-browser \ 
+  chromium-chromedriver
 
 ENV NODE_ENV production
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
