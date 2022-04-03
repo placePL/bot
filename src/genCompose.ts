@@ -27,7 +27,7 @@ async function main(range: string) {
 
     const usernames = res.map(x => x[1]);
     
-    const [start, end] = range.split('-').map(x => parseInt(x));
+    const [start, end] = range.split(',').map(x => parseInt(x));
 
     console.log(file);
     console.log(usernames.slice(start, end).map((x, i) => template(i, x, pass)).join('\n'));
