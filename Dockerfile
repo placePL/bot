@@ -26,4 +26,5 @@ COPY package*.json ./
 RUN npm install
 COPY --from=builder /usr/src/app/dist/ dist/
 
-ENTRYPOINT [ "node", "dist/main.js" ]
+CMD echo hi $(/usr/bin/chromium --version)
+# ENTRYPOINT [ "node", "dist/main.js" ]
