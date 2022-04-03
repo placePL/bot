@@ -141,6 +141,11 @@ class BotInstance {
         const confirmEl = (await frame.evaluateHandle(confirmJsPath)).asElement()!;
         await confirmEl.evaluate(x => (x as HTMLButtonElement).click());
 
+        frame.waitForSelector('faceplate-toast').then(async (x) => {
+            const res = await x?.evaluate(a => (a as HTMLElement).innerText);
+            this.error('sth went wrong:', res);
+        }).catch(() => null);
+
         this.ratelimitEnd = Date.now() + (5 * 60 * 1000);
     }
 }
