@@ -1,11 +1,15 @@
 import { config } from "dotenv";
 import * as bot from './bot';
 import * as sync from './sync';
+import fs from 'fs';
 
 config();
 
 async function main() {
     const { REDDIT_USERNAME, REDDIT_PASSWORD, SERVER_URL, CHROMIUM_PATH, CHROMIUM_HEADLESS } = process.env;
+
+    console.log(fs.statSync(CHROMIUM_PATH!));
+
     await bot.start(
         REDDIT_USERNAME!,
         REDDIT_PASSWORD!,

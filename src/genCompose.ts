@@ -18,6 +18,7 @@ const template = (n: number, username: string, password: string) => `
             - REDDIT_PASSWORD=${password}
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
+            - CHROMIUM_PATH=/usr/bin/chromium-browser
 `
 
 async function main(range: string) {
