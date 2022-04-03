@@ -25,5 +25,5 @@ COPY package*.json ./
 RUN PUPPETEER_PRODUCT=firefox npm install
 COPY --from=builder /usr/src/app/dist/ dist/
 
-CMD echo $(where firefox)
+CMD echo $(whereis firefox)
 # ENTRYPOINT [ "node", "dist/main.js" ]
