@@ -64,7 +64,7 @@ class BotInstance {
 
     async connect() {
         if(this.connected) return;
-        
+
         const socket = io(this.addr);
         socket.on('connect', () => {
             this.log('connected to server');
@@ -83,8 +83,8 @@ class BotInstance {
             try {
                 await this.draw(x, y, color).catch(() => {
                     socket.emit('ready');
-                    socket.emit('ratelimitUpdate', Date.now() + (5 * 60 * 1000));
-                    this.ratelimitEnd = Date.now() + (5 * 60 * 1000);
+                    this.ratelimitEnd = Date.now() + (5 * 60 * 1000) + 500;
+                    socket.emit('ratelimitUpdate', this.ratelimitEnd);
                 });
                 socket.emit('ready');
                 await this.suspend();
