@@ -28,7 +28,7 @@ async function main() {
     const usernames = res.map(x => x[1]);
     
     console.log(file);
-    console.log(usernames.slice(-10).map((x, i) => template(i, x, pass)).join('\n'));
+    console.log(usernames.slice(-20).map((x, i) => template(i, x, pass)).join('\n'));
 }
 
 main();

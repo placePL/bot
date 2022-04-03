@@ -12,7 +12,10 @@ export async function connect(addr: string) {
     socket.on('draw', async ({x, y, color}) => {
         try {
             console.log('drawing: ', x, y, color);
-            await draw(x, y, color);
+            await draw(x, y, color).catch(() => {
+                socket.emit('ready');
+                socket.emit('ratelimitUpdate', Date.now() + (5 * 60 * 1000));
+            });
             socket.emit('ready');
         } catch(err) {
             if(err instanceof RatelimitActiveError) {

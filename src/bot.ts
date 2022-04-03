@@ -19,15 +19,24 @@ export async function start(username: string, password: string, headless: boolea
             height: 800
         }
     });
-    
+
     page = await browser.newPage();
 
-    await login(username, password);
+    let ok = false;
+    while (!ok) {
+        try {
+            await login(username, password);
+            ok = true;
+        } catch (err) {
+            console.error('failed to login: ');
+            console.error(err);
+        }
+    }
 }
 
 
 export async function draw(x: number, y: number, color: number) {
-    if(Date.now() < ratelimitEnd) {
+    if (Date.now() < ratelimitEnd) {
         throw new RatelimitActiveError();
     }
 
