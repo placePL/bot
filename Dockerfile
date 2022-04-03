@@ -4,6 +4,17 @@ WORKDIR /usr/src/app
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 ENV CHROMIUM_PATH /usr/bin/chromium-browser
 
+RUN apk add --no-cache \
+    udev \
+    chromium \
+    nss \
+    freetype \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont \
+    nodejs \
+    yarn
+
 COPY package*.json ./
 RUN npm ci
 COPY tsconfig*.json ./
@@ -12,7 +23,16 @@ RUN npm run build
 
 FROM node:16-alpine
 
-RUN apk add udev ttf-freefont chromium
+RUN apk add --no-cache \
+    udev \
+    chromium \
+    nss \
+    freetype \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont \
+    nodejs \
+    yarn
 
 ENV NODE_ENV production
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
