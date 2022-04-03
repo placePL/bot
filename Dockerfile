@@ -13,12 +13,12 @@ RUN npm run build
 FROM node:16
 
 RUN apt-get update
-RUN apt-get install -y gconf-service libasound2 libatk1.0-0 libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libxss1 fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils
-RUN apt-get install -y chromium
+RUN apt-get install -y firefox
 
 ENV NODE_ENV production
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-ENV CHROMIUM_PATH /usr/bin/chromium
+ENV PUPPETEER_PRODUCT firefox
+# ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+# ENV CHROMIUM_PATH /usr/bin/chromium
 
 WORKDIR /usr/src/app
 
@@ -26,5 +26,5 @@ COPY package*.json ./
 RUN npm install
 COPY --from=builder /usr/src/app/dist/ dist/
 
-CMD echo hi $(/usr/bin/chromium --version)
-# ENTRYPOINT [ "node", "dist/main.js" ]
+# CMD echo hi $(/usr/bin/chromium --version)
+ENTRYPOINT [ "node", "dist/main.js" ]
