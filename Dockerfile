@@ -14,6 +14,9 @@ FROM node:16-alpine
 # RUN apk add udev ttf-freefont chromium
 RUN apk add firefox
 
+RUN apk add --update util-linux
+
+
 ENV NODE_ENV production
 ENV PUPPETEER_PRODUCT firefox
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
