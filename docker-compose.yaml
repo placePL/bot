@@ -8,7 +8,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=Fickle-Bet-4701asd
+            - REDDIT_USERNAME=dsdssdadf
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -19,7 +19,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=TemporaryWelder1106
+            - REDDIT_USERNAME=Interesting-Year185
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -30,7 +30,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=ordoiuris-by-kreml
+            - REDDIT_USERNAME=uhohafuckywucky
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -41,7 +41,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=pierog-polska-gurom
+            - REDDIT_USERNAME=JanKonopko21
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -52,7 +52,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=Polska-Gorom-Pierog
+            - REDDIT_USERNAME=chujbotpierdolony1
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -63,7 +63,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=2137_2137_
+            - REDDIT_USERNAME=MaleficentPaint4312
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -74,7 +74,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=wacekjacekplacek
+            - REDDIT_USERNAME=No-Cold-5206
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -85,7 +85,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=Consistent_Flight806
+            - REDDIT_USERNAME=PostOk597
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -96,7 +96,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=NieDlapsa_DlaPana
+            - REDDIT_USERNAME=polskagurom2137
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -107,7 +107,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=janpawel2tezwalczy
+            - REDDIT_USERNAME=BalticDefender
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -118,7 +118,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=racajacaplaca
+            - REDDIT_USERNAME=wiedzminrypalplotke
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -129,7 +129,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=haha-bo-wiecie-zegz
+            - REDDIT_USERNAME=No-Cucumber7870
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -140,7 +140,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=chlopakiczekajta
+            - REDDIT_USERNAME=Altruistic_Yoghurt18
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -151,7 +151,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=ICantCumAnyMore__
+            - REDDIT_USERNAME=Last_Geologist_2133
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -162,7 +162,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=Narysowano-Piksel-1
+            - REDDIT_USERNAME=SprzedamUran
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -173,7 +173,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=Narysowano-Piksel-2
+            - REDDIT_USERNAME=juri-owsienko
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -184,7 +184,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=Narysowano-Piksel-3
+            - REDDIT_USERNAME=PsychologicalBread19
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -195,7 +195,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=Narysowano-Piksel-4
+            - REDDIT_USERNAME=Suspicious_Juice_100
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -206,7 +206,7 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=Narysowano-Piksel-5
+            - REDDIT_USERNAME=plotkarypalageralta
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
@@ -217,7 +217,62 @@ services:
         build:
             context: .
         environment:
-            - REDDIT_USERNAME=kurla-zrub-mi-louda
+            - REDDIT_USERNAME=Uran-Dla-Czeczenii
+            - REDDIT_PASSWORD=KPjS-W46NgrQiyb
+            - SERVER_URL=https://rplace.cubepotato.eu
+            - CHROMIUM_HEADLESS=true
+
+
+    bot20:
+        image: rplacebot
+        build:
+            context: .
+        environment:
+            - REDDIT_USERNAME=KupieUran
+            - REDDIT_PASSWORD=KPjS-W46NgrQiyb
+            - SERVER_URL=https://rplace.cubepotato.eu
+            - CHROMIUM_HEADLESS=true
+
+
+    bot21:
+        image: rplacebot
+        build:
+            context: .
+        environment:
+            - REDDIT_USERNAME=UnlikelyDelay8281
+            - REDDIT_PASSWORD=KPjS-W46NgrQiyb
+            - SERVER_URL=https://rplace.cubepotato.eu
+            - CHROMIUM_HEADLESS=true
+
+
+    bot22:
+        image: rplacebot
+        build:
+            context: .
+        environment:
+            - REDDIT_USERNAME=Sufficient_Field545
+            - REDDIT_PASSWORD=KPjS-W46NgrQiyb
+            - SERVER_URL=https://rplace.cubepotato.eu
+            - CHROMIUM_HEADLESS=true
+
+
+    bot23:
+        image: rplacebot
+        build:
+            context: .
+        environment:
+            - REDDIT_USERNAME=Ok-Possibility2424
+            - REDDIT_PASSWORD=KPjS-W46NgrQiyb
+            - SERVER_URL=https://rplace.cubepotato.eu
+            - CHROMIUM_HEADLESS=true
+
+
+    bot24:
+        image: rplacebot
+        build:
+            context: .
+        environment:
+            - REDDIT_USERNAME=Timely_Worry_963
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - SERVER_URL=https://rplace.cubepotato.eu
             - CHROMIUM_HEADLESS=true
