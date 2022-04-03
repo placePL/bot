@@ -4,17 +4,6 @@ WORKDIR /usr/src/app
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 ENV CHROMIUM_PATH /usr/bin/chromium-browser
 
-RUN apk add --no-cache \
-    udev \
-    chromium \
-    nss \
-    freetype \
-    harfbuzz \
-    ca-certificates \
-    ttf-freefont \
-    nodejs \
-    yarn
-
 COPY package*.json ./
 RUN npm ci
 COPY tsconfig*.json ./
@@ -44,4 +33,5 @@ COPY package*.json ./
 RUN npm install
 COPY --from=builder /usr/src/app/dist/ dist/
 
-ENTRYPOINT [ "node", "dist/main.js" ]
+ENTRYPOINT [ "/usr/bin/chromium-browser" , "--headless" ]
+# ENTRYPOINT [ "node", "dist/main.js" ]
