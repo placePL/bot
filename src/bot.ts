@@ -10,6 +10,7 @@ class BotInstance {
     context?: puppeteer.BrowserContext;
     page?: puppeteer.Page;
     ratelimitEnd: number = Date.now();
+    connected = false;
 
     constructor(private username: string, private password: string, private browser: puppeteer.Browser, private addr: string) {
 
@@ -62,11 +63,14 @@ class BotInstance {
     }
 
     async connect() {
+        if(this.connected) return;
+        
         const socket = io(this.addr);
         socket.on('connect', () => {
             this.log('connected to server');
             socket.emit('ratelimitUpdate', this.ratelimitEnd);
             socket.emit('ready');
+            this.connected = true;
         });
         socket.on('draw', async ({x, y, color}) => {
             this.log('drawing: ', x, y, color);
