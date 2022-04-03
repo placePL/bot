@@ -17,7 +17,7 @@ RUN apk add firefox
 ENV NODE_ENV production
 ENV PUPPETEER_PRODUCT firefox
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-# ENV CHROMIUM_PATH /usr/bin/chromium-browser
+ENV CHROMIUM_PATH /usr/bin/chromium-browser
 
 WORKDIR /usr/src/app
 
@@ -25,4 +25,5 @@ COPY package*.json ./
 RUN PUPPETEER_PRODUCT=firefox npm install
 COPY --from=builder /usr/src/app/dist/ dist/
 
-ENTRYPOINT [ "node", "dist/main.js" ]
+CMD echo $(where firefox)
+# ENTRYPOINT [ "node", "dist/main.js" ]
