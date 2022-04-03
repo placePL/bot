@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 import { RatelimitActiveError, sleep } from './utils';
 
 const placeTileJsPath = 'document.querySelector("body > mona-lisa-app > faceplate-csrf-provider > faceplate-alert-reporter > mona-lisa-embed").shadowRoot.querySelector("div > mona-lisa-share-container > div.bottom-controls > mona-lisa-status-pill").shadowRoot.querySelector("button")';
@@ -11,6 +11,7 @@ class BotInstance {
     page?: puppeteer.Page;
     ratelimitEnd: number = Date.now();
     connected = false;
+    socket?: Socket;
 
     constructor(private username: string, private password: string, private browser: puppeteer.Browser, private addr: string) {
 
@@ -28,6 +29,18 @@ class BotInstance {
     async start() {
         this.context = await this.browser.createIncognitoBrowserContext();
         this.page = await this.context.newPage();
+        await this.page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36');
+        this.page.on('requestfailed', request => {
+            if(request.failure()?.errorText == 'net::ERR_ABORTED') return;
+
+            console.log(`${request.failure()?.errorText} ${request.url()}`);
+            if (request.url() == 'https://gql-realtime-2.reddit.com/query') {
+                this.error('something went wrong while setting pixel!', request.failure()?.errorText);
+                this.ratelimitEnd = Date.now() + (5 * 60 * 1000) + 500;
+                this.socket?.emit('ratelimitUpdate', this.ratelimitEnd);
+                this.socket?.emit('ready');
+            }
+        });
 
         let ok = false;
         while (!ok) {
@@ -46,6 +59,7 @@ class BotInstance {
     }
 
     async suspend() {
+        console.log('suspending');
         await this.page?.close();
         await this.context?.close();
         this.page = undefined;
@@ -53,29 +67,30 @@ class BotInstance {
     }
 
     async login() {
-        if(!this.page) return;
+        if (!this.page) return;
 
-        await this.page.goto('https://reddit.com/login', {timeout: 0});
+        await this.page.goto('https://reddit.com/login', { timeout: 0 });
         await this.page.type('#loginUsername', this.username);
         await this.page.type('#loginPassword', this.password);
         await this.page.click('button[type=submit].AnimatedForm__submitButton.m-full-width');
-        await this.page.waitForNavigation({timeout: 0});    
+        await this.page.waitForNavigation({ timeout: 0 });
     }
 
     async connect() {
-        if(this.connected) return;
+        if (this.connected) return;
 
         const socket = io(this.addr);
+        this.socket = socket;
         socket.on('connect', () => {
             this.log('connected to server');
             socket.emit('ratelimitUpdate', this.ratelimitEnd);
             socket.emit('ready');
             this.connected = true;
         });
-        socket.on('draw', async ({x, y, color}) => {
+        socket.on('draw', async ({ x, y, color }) => {
             this.log('drawing: ', x, y, color);
 
-            if(!this.page) {
+            if (!this.page) {
                 this.log('recreating page...');
                 this.start();
             }
@@ -87,9 +102,10 @@ class BotInstance {
                     socket.emit('ratelimitUpdate', this.ratelimitEnd);
                 });
                 socket.emit('ready');
+                await sleep(20000);
                 await this.suspend();
-            } catch(err) {
-                if(err instanceof RatelimitActiveError) {
+            } catch (err) {
+                if (err instanceof RatelimitActiveError) {
                     socket.emit('ratelimitUpdate', this.ratelimitEnd);
                 }
             }
@@ -102,29 +118,29 @@ class BotInstance {
         }
 
         const page = this.page!;
-        
+
         await page.goto(`https://www.reddit.com/r/place/?cx=${x}&cy=${y}`);
         await page.waitForSelector('.moeaZEzC0AbAvmDwN22Ma');
         await page.click('.moeaZEzC0AbAvmDwN22Ma');
-    
+
         const elementHandle = await page.waitForSelector('iframe.Q-OBKuePQXXm3LGhGfv3k');
         const frame = (await elementHandle!.contentFrame())!;
-    
+
         await page.waitForTimeout(1000);
-    
+
         const placeTileBtn = await (await frame.evaluateHandle(placeTileJsPath)).asElement()!;
         await placeTileBtn.evaluate(x => (x as HTMLButtonElement).click());
-    
+
         await page.waitForTimeout(1000);
-    
+
         const colorEl = (await frame.evaluateHandle(colorJsPath(color))).asElement()!;
         await colorEl.evaluate(x => (x as HTMLButtonElement).click());
-    
+
         await page.waitForTimeout(2000);
-    
+
         const confirmEl = (await frame.evaluateHandle(confirmJsPath)).asElement()!;
         await confirmEl.evaluate(x => (x as HTMLButtonElement).click());
-    
+
         this.ratelimitEnd = Date.now() + (5 * 60 * 1000);
     }
 }
@@ -143,7 +159,7 @@ export async function run(headless: boolean, browserPath: string | undefined, ad
         }
     });
 
-    for(let u of usernames) {
+    for (let u of usernames) {
         bots[u] = new BotInstance(u, password, browser, addr);
         console.log('starting ', u);
         await bots[u].start();
