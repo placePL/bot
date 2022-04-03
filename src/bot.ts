@@ -47,6 +47,8 @@ class BotInstance {
     async suspend() {
         await this.page?.close();
         await this.context?.close();
+        this.page = undefined;
+        this.context = undefined;
     }
 
     async login() {
