@@ -8,6 +8,7 @@ config();
 async function main() {
     const { REDDIT_USERNAME, REDDIT_PASSWORD, SERVER_URL, CHROMIUM_PATH, CHROMIUM_HEADLESS } = process.env;
 
+    console.log('hi', CHROMIUM_PATH!);
     console.log(fs.statSync(CHROMIUM_PATH!));
 
     await bot.start(
