@@ -27,5 +27,5 @@ RUN npm install
 COPY --from=builder /usr/src/app/dist/ dist/
 
 # ENTRYPOINT [ "/usr/bin/chromium-browser" , "--version" ]
-CMD echo hi && echo $(which chromium-browser)
+CMD echo hi && echo $(which chromium)
 # ENTRYPOINT [ "node", "dist/main.js" ]
