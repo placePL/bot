@@ -1,8 +1,7 @@
-FROM node:16 AS builder
+FROM node:16-alpine AS builder
 WORKDIR /usr/src/app
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-ENV CHROMIUM_PATH /usr/bin/chromium-browser
 
 COPY package*.json ./
 RUN npm ci
@@ -10,15 +9,14 @@ COPY tsconfig*.json ./
 COPY src src
 RUN npm run build
 
-FROM node:16
+FROM node:16-alpine
 
-RUN apt-get update
-RUN apt-get install -y firefox
+# RUN apk add udev ttf-freefont chromium
+RUN apk add firefox
 
 ENV NODE_ENV production
 ENV PUPPETEER_PRODUCT firefox
-# ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-# ENV CHROMIUM_PATH /usr/bin/chromium
+# ENV CHROMIUM_PATH /usr/bin/chromium-browser
 
 WORKDIR /usr/src/app
 
@@ -26,5 +24,4 @@ COPY package*.json ./
 RUN npm install
 COPY --from=builder /usr/src/app/dist/ dist/
 
-# CMD echo hi $(/usr/bin/chromium --version)
 ENTRYPOINT [ "node", "dist/main.js" ]
