@@ -25,7 +25,6 @@ export async function start(username: string, password: string, headless: boolea
     await login(username, password);
 }
 
-
 export async function draw(x: number, y: number, color: number) {
     if(Date.now() < ratelimitEnd) {
         throw new RatelimitActiveError();
@@ -65,5 +64,5 @@ async function login(username: string, password: string) {
     await page.type('#loginUsername', username);
     await page.type('#loginPassword', password);
     await page.click('button[type=submit].AnimatedForm__submitButton.m-full-width');
-    await page.waitForNavigation();
+    await page.waitForNavigation({timeout: 0});
 }
