@@ -33,5 +33,5 @@ COPY package*.json ./
 RUN npm install
 COPY --from=builder /usr/src/app/dist/ dist/
 
-ENTRYPOINT [ "/usr/bin/chromium-browser" , "--headless" ]
+ENTRYPOINT [ "/usr/bin/chromium-browser" , "--version" ]
 # ENTRYPOINT [ "node", "dist/main.js" ]
