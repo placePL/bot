@@ -126,8 +126,8 @@ export async function run(headless: boolean, browserPath: string | undefined, ad
         const context = await browser.createIncognitoBrowserContext();
         bots[u] = new BotInstance(u, password, context, addr);
         console.log('starting ', u);
-        await bots[u].start();
-        // await sleep(parseInt(process.env.LOGIN_INTERVAL || '4000'));
+        bots[u].start();
+        await sleep(parseInt(process.env.LOGIN_INTERVAL || '1000'));
     }
 }
 
