@@ -33,7 +33,7 @@ class BotInstance {
         this.page.on('requestfailed', request => {
             if(request.failure()?.errorText == 'net::ERR_ABORTED') return;
 
-            console.log(`${request.failure()?.errorText} ${request.url()}`);
+            this.log(`${request.failure()?.errorText} ${request.url()}`);
             if (request.url() == 'https://gql-realtime-2.reddit.com/query') {
                 this.error('something went wrong while setting pixel!', request.failure()?.errorText);
                 this.ratelimitEnd = Date.now() + (5 * 60 * 1000) + 500;
@@ -59,7 +59,7 @@ class BotInstance {
     }
 
     async suspend() {
-        console.log('suspending');
+        this.log('suspending');
         await this.page?.close();
         await this.context?.close();
         this.page = undefined;
