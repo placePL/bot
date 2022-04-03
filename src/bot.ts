@@ -13,7 +13,7 @@ export async function start(username: string, password: string, headless: boolea
     let browser = await puppeteer.launch({
         headless: headless,
         executablePath: chromium,
-        args: ["--no-sandbox"],
+        args: ['--disable-gpu', '--disable-setuid-sandbox', '--no-sandbox', '--ignore-certificate-errors', '--disable-web-security', '--disable-features=IsolateOrigins', '--disable-site-isolation-trials'],
         defaultViewport: {
             width: 1000,
             height: 800
