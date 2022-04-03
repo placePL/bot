@@ -11,8 +11,8 @@ services:
 const template = (n: number, username: string, password: string) => `
     bot${n}:
         image: rplacebot
-        build:
-            context: .
+        ${n == 0 ? `build:
+        context: .` : ''}
         environment:
             - REDDIT_USERNAME=${username}
             - REDDIT_PASSWORD=${password}

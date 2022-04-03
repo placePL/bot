@@ -6,7 +6,7 @@ services:
     bot0:
         image: rplacebot
         build:
-            context: .
+        context: .
         environment:
             - REDDIT_USERNAME=2137_2137_
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
@@ -16,8 +16,7 @@ services:
 
     bot1:
         image: rplacebot
-        build:
-            context: .
+        
         environment:
             - REDDIT_USERNAME=wacekjacekplacek
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
@@ -27,8 +26,7 @@ services:
 
     bot2:
         image: rplacebot
-        build:
-            context: .
+        
         environment:
             - REDDIT_USERNAME=Consistent_Flight806
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
@@ -38,8 +36,7 @@ services:
 
     bot3:
         image: rplacebot
-        build:
-            context: .
+        
         environment:
             - REDDIT_USERNAME=NieDlapsa_DlaPana
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
@@ -49,8 +46,7 @@ services:
 
     bot4:
         image: rplacebot
-        build:
-            context: .
+        
         environment:
             - REDDIT_USERNAME=janpawel2tezwalczy
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
@@ -60,8 +56,7 @@ services:
 
     bot5:
         image: rplacebot
-        build:
-            context: .
+        
         environment:
             - REDDIT_USERNAME=racajacaplaca
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
@@ -71,8 +66,7 @@ services:
 
     bot6:
         image: rplacebot
-        build:
-            context: .
+        
         environment:
             - REDDIT_USERNAME=haha-bo-wiecie-zegz
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
@@ -82,8 +76,7 @@ services:
 
     bot7:
         image: rplacebot
-        build:
-            context: .
+        
         environment:
             - REDDIT_USERNAME=chlopakiczekajta
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
@@ -93,8 +86,7 @@ services:
 
     bot8:
         image: rplacebot
-        build:
-            context: .
+        
         environment:
             - REDDIT_USERNAME=ICantCumAnyMore__
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
@@ -104,8 +96,7 @@ services:
 
     bot9:
         image: rplacebot
-        build:
-            context: .
+        
         environment:
             - REDDIT_USERNAME=Narysowano-Piksel-1
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
@@ -115,8 +106,7 @@ services:
 
     bot10:
         image: rplacebot
-        build:
-            context: .
+        
         environment:
             - REDDIT_USERNAME=Narysowano-Piksel-2
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
@@ -126,8 +116,7 @@ services:
 
     bot11:
         image: rplacebot
-        build:
-            context: .
+        
         environment:
             - REDDIT_USERNAME=Narysowano-Piksel-3
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
@@ -137,8 +126,7 @@ services:
 
     bot12:
         image: rplacebot
-        build:
-            context: .
+        
         environment:
             - REDDIT_USERNAME=Narysowano-Piksel-4
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
@@ -148,8 +136,7 @@ services:
 
     bot13:
         image: rplacebot
-        build:
-            context: .
+        
         environment:
             - REDDIT_USERNAME=Narysowano-Piksel-5
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
@@ -159,8 +146,7 @@ services:
 
     bot14:
         image: rplacebot
-        build:
-            context: .
+        
         environment:
             - REDDIT_USERNAME=kurla-zrub-mi-louda
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
