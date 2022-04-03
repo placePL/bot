@@ -9,9 +9,11 @@ const confirmJsPath = 'document.querySelector("body > mona-lisa-app > faceplate-
 let page: puppeteer.Page;
 export let ratelimitEnd = Date.now();
 
-export async function start(username: string, password: string) {
+export async function start(username: string, password: string, headless: boolean, chromium: string) {
     let browser = await puppeteer.launch({
-        headless: false,
+        headless: headless,
+        executablePath: chromium,
+        args: ["--no-sandbox"],
         defaultViewport: {
             width: 1000,
             height: 800
@@ -28,6 +30,8 @@ export async function draw(x: number, y: number, color: number) {
     if(Date.now() < ratelimitEnd) {
         throw new RatelimitActiveError();
     }
+
+    console.log(`draw (${x}, ${y}) color: ${color}`);
 
     await page.goto(`https://www.reddit.com/r/place/?cx=${x}&cy=${y}`);
     await page.waitForSelector('.moeaZEzC0AbAvmDwN22Ma');
@@ -55,6 +59,8 @@ export async function draw(x: number, y: number, color: number) {
 }
 
 async function login(username: string, password: string) {
+    console.log(`Logging in as ${username}`);
+
     await page.goto('https://reddit.com/login');
     await page.type('#loginUsername', username);
     await page.type('#loginPassword', password);
