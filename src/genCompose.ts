@@ -12,7 +12,7 @@ const template = (n: number, username: string, password: string) => `
     bot${n}:
         image: rplacebot
         ${n == 0 ? `build:
-        context: .` : ''}
+            context: .` : ''}
         environment:
             - REDDIT_USERNAME=${username}
             - REDDIT_PASSWORD=${password}
