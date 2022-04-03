@@ -7,6 +7,6 @@ services:
         environment:
             - SERVER_URL=https://rplace.cubepotato.eu
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
-            - ACCOUNT_RANGE=70,100
+            - ACCOUNT_RANGE=120,135
             - LOGIN_INTERVAL=2000
             - CHROMIUM_HEADLESS=true

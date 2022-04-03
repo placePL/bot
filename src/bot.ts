@@ -7,10 +7,11 @@ const colorJsPath = (n: number) => `document.querySelector("body > mona-lisa-app
 const confirmJsPath = 'document.querySelector("body > mona-lisa-app > faceplate-csrf-provider > faceplate-alert-reporter > mona-lisa-embed").shadowRoot.querySelector("div > mona-lisa-share-container > mona-lisa-color-picker").shadowRoot.querySelector("div > div > div.actions > button.confirm")';
 
 class BotInstance {
+    context?: puppeteer.BrowserContext;
     page?: puppeteer.Page;
     ratelimitEnd: number = Date.now();
 
-    constructor(private username: string, private password: string, private context: puppeteer.BrowserContext, private addr: string) {
+    constructor(private username: string, private password: string, private browser: puppeteer.Browser, private addr: string) {
 
     }
 
@@ -24,6 +25,7 @@ class BotInstance {
 
 
     async start() {
+        this.context = await this.browser.createIncognitoBrowserContext();
         this.page = await this.context.newPage();
 
         let ok = false;
@@ -40,6 +42,11 @@ class BotInstance {
         this.log('logged in');
 
         await this.connect();
+    }
+
+    async suspend() {
+        await this.page?.close();
+        await this.context?.close();
     }
 
     async login() {
@@ -60,13 +67,21 @@ class BotInstance {
             socket.emit('ready');
         });
         socket.on('draw', async ({x, y, color}) => {
+            this.log('drawing: ', x, y, color);
+
+            if(!this.page) {
+                this.log('recreating page...');
+                this.start();
+            }
+
             try {
-                this.log('drawing: ', x, y, color);
                 await this.draw(x, y, color).catch(() => {
                     socket.emit('ready');
                     socket.emit('ratelimitUpdate', Date.now() + (5 * 60 * 1000));
+                    this.ratelimitEnd = Date.now() + (5 * 60 * 1000);
                 });
                 socket.emit('ready');
+                await this.suspend();
             } catch(err) {
                 if(err instanceof RatelimitActiveError) {
                     socket.emit('ratelimitUpdate', this.ratelimitEnd);
@@ -123,12 +138,17 @@ export async function run(headless: boolean, browserPath: string | undefined, ad
     });
 
     for(let u of usernames) {
-        const context = await browser.createIncognitoBrowserContext();
-        bots[u] = new BotInstance(u, password, context, addr);
+        bots[u] = new BotInstance(u, password, browser, addr);
         console.log('starting ', u);
-        bots[u].start();
+        await bots[u].start();
         await sleep(parseInt(process.env.LOGIN_INTERVAL || '1000'));
     }
+
+    setInterval(loop, 3000);
+}
+
+async function loop() {
+
 }
 
 // let page: puppeteer.Page;
