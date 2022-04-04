@@ -124,6 +124,7 @@ class BotInstance {
     }
 
     async draw2(x: number, y: number, color: number): Promise<number> {
+        if(!this.authHeader) return Date.now() + (20*60*1000);
 
         const cords = cordsToCanvasRelative(x, y);
 
