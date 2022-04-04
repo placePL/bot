@@ -48,14 +48,16 @@ class BotInstance {
         });
 
 
+        let retries = 0;
         let ok = false;
-        while (!ok) {
+        while (!ok && retries <= 2) {
             try {
                 await this.login();
                 ok = true;
             } catch (err) {
                 this.error('failed to login: ');
                 this.error(err);
+                retries++;
             }
         }
 

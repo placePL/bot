@@ -9,4 +9,5 @@ services:
             - REDDIT_PASSWORD=KPjS-W46NgrQiyb
             - ACCOUNT_RANGE=149,
             - LOGIN_INTERVAL=2000
+            - PARALLEL_LOGINS=5
             - CHROMIUM_HEADLESS=true
