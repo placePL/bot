@@ -78,6 +78,7 @@ class BotInstance {
         if (!this.page) return;
 
         await this.page.goto('https://reddit.com/login', { timeout: 10000 });
+        await this.page.waitForSelector('#loginUsername');
         await this.page.type('#loginUsername', this.username);
         await this.page.type('#loginPassword', this.password);
         await this.page.click('button[type=submit].AnimatedForm__submitButton.m-full-width');
