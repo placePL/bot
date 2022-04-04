@@ -115,7 +115,7 @@ class BotInstance {
                 await sleep(20000);
                 await this.suspend();
             } catch (err) {
-                console.error(err);
+                this.error(err);
                 if (err instanceof RatelimitActiveError) {
                     socket.emit('ratelimitUpdate', this.ratelimitEnd);
                 }
