@@ -75,11 +75,11 @@ class BotInstance {
     async login() {
         if (!this.page) return;
 
-        await this.page.goto('https://reddit.com/login', { timeout: 0 });
+        await this.page.goto('https://reddit.com/login');
         await this.page.type('#loginUsername', this.username);
         await this.page.type('#loginPassword', this.password);
         await this.page.click('button[type=submit].AnimatedForm__submitButton.m-full-width');
-        await this.page.waitForNavigation({ timeout: 0 });
+        await this.page.waitForNavigation();
     }
 
     async connect() {
@@ -240,7 +240,12 @@ export async function run(headless: boolean, browserPath: string | undefined, ad
     for (let u of usernames) {
         bots[u] = new BotInstance(u, password, browser, addr);
         console.log('starting ', u);
-        await bots[u].start();
+        try {
+            await bots[u].start();
+        } catch(err) {
+            console.log('failed to start', u);
+            console.error(err);
+        }
         await sleep(parseInt(process.env.LOGIN_INTERVAL || '1000'));
     }
 
