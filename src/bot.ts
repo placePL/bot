@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import AdblockerPlugin from 'puppeteer-extra-plugin-adblocker';
 import { io, Socket } from 'socket.io-client';
-import { cordsToCanvasRelative, RatelimitActiveError, sleep } from './utils';
+import { cordsToCanvasRelative, RatelimitActiveError, sleep, sliceIntoChunks } from './utils';
 import axios from 'axios';
 
 const placeTileJsPath = 'document.querySelector("body > mona-lisa-app > faceplate-csrf-provider > faceplate-alert-reporter > mona-lisa-embed").shadowRoot.querySelector("div > mona-lisa-share-container > div.bottom-controls > mona-lisa-status-pill").shadowRoot.querySelector("button")';
@@ -237,23 +237,26 @@ export async function run(headless: boolean, browserPath: string | undefined, ad
 
     console.log('got', usernames.length, 'accounts');
 
-    for (let u of usernames) {
-        bots[u] = new BotInstance(u, password, browser, addr);
-        console.log('starting ', u);
-        try {
-            await bots[u].start();
-        } catch(err) {
-            console.log('failed to start', u);
-            console.error(err);
-        }
-        await sleep(parseInt(process.env.LOGIN_INTERVAL || '1000'));
+    const parallelLogins = parseInt(process.env.PARALLEL_LOGINS || '2');
+    const perChunk = Math.floor(usernames.length / parallelLogins);
+
+    const chunks = sliceIntoChunks(usernames, perChunk);
+    
+    for(let chunk of chunks) {
+        (async function() {
+            for (let u of chunk) {
+                bots[u] = new BotInstance(u, password, browser, addr);
+                console.log('starting', u);
+                try {
+                    await bots[u].start();
+                } catch(err) {
+                    console.log('failed to start', u);
+                    console.error(err);
+                }
+                await sleep(parseInt(process.env.LOGIN_INTERVAL || '1000'));
+            }        
+        })();
     }
-
-    setInterval(loop, 3000);
-}
-
-async function loop() {
-
 }
 
 // let page: puppeteer.Page;
