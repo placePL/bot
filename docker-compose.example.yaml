@@ -6,7 +6,7 @@ services:
             context: .
         environment:
             - SERVER_URL=https://rplace.cubepotato.eu
-            - REDDIT_PASSWORD=KPjS-W46NgrQiyb
+            - REDDIT_PASSWORD=hi
             - ACCOUNT_RANGE=149,
             - LOGIN_INTERVAL=2000
             - PARALLEL_LOGINS=5
