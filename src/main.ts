@@ -13,9 +13,9 @@ async function main() {
 
     const f = fs.readFileSync(path.resolve('accounts.txt'));
     const str = f.toString();
-    const res = [...str.matchAll(/^\d+:\r?\n?([a-zA-Z0-9-_]+)$/gm)];
+    const res = [...str.matchAll(/^\d+:(\r?\n)*(?<user>[a-zA-Z0-9-_]+)$/gm)];
 
-    const usernames = res.map(x => x[1]).slice(start, end);
+    const usernames = res.map(x => x.groups!['user']).slice(start, end);
 
     // console.log('hi', CHROMIUM_PATH!);
     // console.log(fs.existsSync(CHROMIUM_PATH!));
