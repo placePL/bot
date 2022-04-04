@@ -4,6 +4,7 @@ WORKDIR /usr/src/app
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
 COPY package*.json ./
+RUN npm install
 RUN npm ci
 COPY tsconfig*.json ./
 COPY src src
