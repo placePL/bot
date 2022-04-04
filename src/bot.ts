@@ -115,7 +115,11 @@ class BotInstance {
                 await sleep(20000);
                 await this.suspend();
             } catch (err) {
-                this.error(err);
+                if(axios.isAxiosError(err)) {
+                    this.error(err.message);
+                } else {
+                    this.error((err as Error)?.message || err);
+                }
                 if (err instanceof RatelimitActiveError) {
                     socket.emit('ratelimitUpdate', this.ratelimitEnd);
                 }
